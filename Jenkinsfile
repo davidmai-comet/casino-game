@@ -1,11 +1,14 @@
 pipeline {
     agent any
     stages {
-        stage('Build') { 
+        stage('Clone') {
             steps {
-                sh 'rm -rf build'
-                sh 'cmake -B build -S .' 
-                sh 'cmake --build build'
+                git url: 'https://github.com/davidmai-comet/casino-game.git', branch: 'main'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Build stage running...'
             }
         }
     }
